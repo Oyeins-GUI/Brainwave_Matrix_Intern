@@ -17,6 +17,8 @@ A modern, feature-rich expense and money-tracking web application built using **
 
 ---
 
+---
+
 ## 🛠️ Tech Stack
 
 ### **Frontend**
@@ -83,6 +85,8 @@ npm run dev
 
 ---
 
+---
+
 ## 💡 Contributing
 
 We welcome contributions! If you want to help improve this project:
@@ -96,11 +100,14 @@ Feel free to open an issue if you find any bugs or have feature requests!
 
 ---
 
+---
+
 ## 📩 Contact
 
 For questions or support, reach out via:
 
--  GitHub Issues: [Open an Issue](https://github.com/your-username/expense-tracker/issues)
--  Email: your-email@example.com
+-  GitHub Issues: [Open an Issue](https://github.com/Oyeins-GUI/Brainwave_Matrix_Intern/issues)
+-  Email: oyeinbomoopuene@gmail.com
+-  Portfolio: [Visit my website](https://oyeinbomo.vercel.app)
 
 ---
