@@ -1,4 +1,4 @@
-# 💰 Expense Tracker Web App
+# 💰 TrackIT Web App
 
 A modern, feature-rich expense and money-tracking web application built using **React (TypeScript), Node.js (Express), and MySQL**.
 
@@ -48,7 +48,7 @@ cd Brainwave_Matrix_Intern
 
 ```
 
-### **2️⃣ Set up Frontend **
+### **2️⃣ Set up Frontend**
 
 ```bash
 cd frontend
@@ -58,7 +58,7 @@ yarn add
 npm run dev
 ```
 
-### **3️⃣ Set up Backend **
+### **3️⃣ Set up Backend**
 
 ```bash
 cd backend
