@@ -1,7 +1,6 @@
 import type { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import pool from "../config/db";
 import { checkRecordExists, insertRecord, updateRecord } from "../sql";
 import { User } from "../types";
 import { v4 as uuid } from "uuid";
@@ -87,7 +86,7 @@ export const login = async (req: Request, res: Response) => {
          id: existingUser.id,
          email: existingUser.email,
          username: existingUser.username,
-         message: "Login successful",
+         currency: existingUser.currency,
       });
    } catch (error) {
       console.error(error);
@@ -141,7 +140,22 @@ export async function updateUserData(
          value: existingUser?.id,
       });
 
-      res.status(200).json({ message: "User updated successfully" });
+      const newUser = await checkRecordExists<User>(
+         "users",
+         "id",
+         existingUser.id
+      );
+
+      if (newUser) {
+         res.status(200).json({
+            id: newUser.id,
+            email: newUser.email,
+            username: newUser.username,
+            currency: newUser.currency,
+         });
+      } else {
+         res.status(400).json({ message: "Something went wrong" });
+      }
    } catch (error) {
       console.error("Error:", error);
       res.status(500).json({ message: "Internal server error" });
