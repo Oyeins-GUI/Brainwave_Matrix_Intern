@@ -8,3 +8,9 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 export const ThemeContext = createContext<ThemeContextType | undefined>(
    undefined
 );
+
+export type CurrencyType = "NGN";
+
+export const currencies = {
+   NGN: "₦",
+};

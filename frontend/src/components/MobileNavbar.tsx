@@ -5,7 +5,7 @@ import { BarChart2, PieChart, DollarSign, User } from "lucide-react";
 function MobileNavbar() {
    return (
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg">
-         <div className="flex justify-around py-2">
+         <div className="flex justify-around py-3">
             <NavLink to="/" icon={<BarChart2 size={24} />} />
             <NavLink to="/reports" icon={<PieChart size={24} />} />
             <NavLink to="/budget" icon={<DollarSign size={24} />} />

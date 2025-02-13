@@ -8,31 +8,27 @@ import {
    Tooltip,
    ResponsiveContainer,
 } from "recharts";
-import {
-   Edit2,
-   Trash2,
-   Wallet,
-   TrendingUp,
-   TrendingDown,
-   PiggyBank,
-} from "lucide-react";
+import { Edit2, Trash2, Wallet, TrendingUp, TrendingDown } from "lucide-react";
 import type React from "react"; // Import React
+import { useAuth } from "../hooks/useAuth";
+import { currencies, CurrencyType } from "../constants";
 
 function Dashboard() {
+   const { user } = useAuth();
    // Mock data
    const financialData = {
-      totalBalance: 5000,
-      monthlyIncome: 3000,
-      monthlyExpenses: 2000,
-      remainingBudget: 1000,
+      totalBalance: 0,
+      monthlyIncome: 0,
+      monthlyExpenses: 0,
+      remainingBudget: 0,
    };
 
    const expenseData = [
-      { category: "Food", amount: 500 },
-      { category: "Transport", amount: 300 },
-      { category: "Entertainment", amount: 200 },
-      { category: "Utilities", amount: 400 },
-      { category: "Rent", amount: 1000 },
+      { category: "Food", amount: 0 },
+      { category: "Transport", amount: 0 },
+      { category: "Entertainment", amount: 0 },
+      { category: "Utilities", amount: 0 },
+      { category: "Rent", amount: 0 },
    ];
 
    const transactions = [
@@ -41,21 +37,21 @@ function Dashboard() {
          date: "2023-05-01",
          category: "Food",
          description: "Groceries",
-         amount: -100,
+         amount: 0,
       },
       {
          id: 2,
          date: "2023-05-02",
          category: "Income",
          description: "Salary",
-         amount: 3000,
+         amount: 0,
       },
       {
          id: 3,
          date: "2023-05-03",
          category: "Transport",
          description: "Gas",
-         amount: -50,
+         amount: 0,
       },
    ];
 
@@ -66,27 +62,22 @@ function Dashboard() {
          exit={{ opacity: 0, y: -20 }}
          transition={{ duration: 0.3 }}
       >
-         <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+         <h1 className="text-3xl font-bold mb-6">Welcome, {user?.username}!</h1>
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <FinancialCard
                title="Total Balance"
                amount={financialData.totalBalance}
-               icon={<Wallet size={24} />}
+               icon={<Wallet size={32} />}
             />
             <FinancialCard
                title="Monthly Income"
                amount={financialData.monthlyIncome}
-               icon={<TrendingUp size={24} />}
+               icon={<TrendingUp size={32} />}
             />
             <FinancialCard
                title="Monthly Expenses"
                amount={financialData.monthlyExpenses}
-               icon={<TrendingDown size={24} />}
-            />
-            <FinancialCard
-               title="Remaining Budget"
-               amount={financialData.remainingBudget}
-               icon={<PiggyBank size={24} />}
+               icon={<TrendingDown size={32} />}
             />
          </div>
          <div className="mb-8">
@@ -152,18 +143,28 @@ function Dashboard() {
    );
 }
 
-const FinancialCard: React.FC<{
+function FinancialCard({
+   title,
+   amount,
+   icon,
+}: {
    title: string;
    amount: number;
    icon: React.ReactNode;
-}> = ({ title, amount, icon }) => (
-   <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-      <div className="flex items-center mb-2">
+}) {
+   const { user } = useAuth();
+   console.log(user);
+   return (
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow flex items-center">
          <div className="mr-2 text-blue-500">{icon}</div>
-         <h3 className="text-lg font-semibold">{title}</h3>
+         <div className="flex items-center mb-2 flex flex-col items-start">
+            <h3 className="text-lg font-bold">{title}</h3>
+            <p className="text-2xl font-bold">
+               {currencies[user?.currency as CurrencyType]}
+               {amount.toFixed(2)}
+            </p>
+         </div>
       </div>
-      <p className="text-2xl font-bold">${amount.toFixed(2)}</p>
-   </div>
-);
-
+   );
+}
 export default Dashboard;
