@@ -8,11 +8,6 @@ A modern, feature-rich expense and money-tracking web application built using **
 
 -  ✅ **User Authentication** (Sign Up, Login, Logout)
 -  ✅ **JWT-Based Authorization**
--  ✅ **Add, Edit, and Delete Transactions** (Income & Expenses)
--  ✅ **Categorized Expense Tracking**
--  ✅ **Monthly Financial Summary** (Total Balance, Income, Expenses)
--  ✅ **Interactive Charts for Expense Breakdown**
--  ✅ **Recent Transactions Table**
 -  ✅ **Dark/Light Mode**
 
 ---
@@ -76,6 +71,11 @@ npm run dev
 
 ## 📌 To-Do (Future Enhancements)
 
+-  ✅ **Add, Edit, and Delete Transactions** (Income & Expenses)
+-  ✅ **Categorized Expense Tracking**
+-  ✅ **Monthly Financial Summary** (Total Balance, Income, Expenses)
+-  ✅ **Interactive Charts for Expense Breakdown**
+-  ✅ **Recent Transactions Table**
 -  ✅ PWA Support (Offline Mode)
 -  ✅ Export Expenses as CSV
 -  ✅ Budget Alerts & Reminders
