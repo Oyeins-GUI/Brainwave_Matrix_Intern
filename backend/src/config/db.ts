@@ -17,7 +17,6 @@ export const connectDB = async () => {
          return;
       }
       console.log("Connected to MySQL Database");
-      pool.end();
    });
 };
 
