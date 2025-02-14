@@ -105,8 +105,8 @@ Feel free to open an issue if you find any bugs or have feature requests!
 
 For questions or support, reach out via:
 
--  GitHub Issues: [Open an Issue](https://github.com/Oyeins-GUI/Brainwave_Matrix_Intern/issues)
+-  GitHub Issues: [Open an Issue](https://github.com/Oyeins-GUI/Brainwave_Matrix_Intern/issues/new)
 -  Email: oyeinbomoopuene@gmail.com
--  Portfolio: [Reach me via my website](https://oyeinbomo.vercel.app/contact)
+-  Portfolio: [Reach out to me via my website](https://oyeinbomo.vercel.app/contact)
 
 ---
