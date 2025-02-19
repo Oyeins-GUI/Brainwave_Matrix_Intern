@@ -20,7 +20,7 @@ A modern, feature-rich expense and money-tracking web application built using **
 
 -  ⚛️ React (TypeScript)
 -  🎨 TailwindCSS
--  🔄 React Hook Form & Yup (Validation)
+-  🔄 React Hook Form
 -  📊 Recharts (Charts & Graphs)
 -  🚏 React Router (Navigation)
 
@@ -28,7 +28,7 @@ A modern, feature-rich expense and money-tracking web application built using **
 
 -  🟢 Node.js & Express
 -  🗄️ MySQL (Database)
--  🔑 JWT Authentication
+-  🔑 HTTP Only Authentication
 -  🔐 bcrypt (Password Hashing)
 
 ---
@@ -42,7 +42,6 @@ A modern, feature-rich expense and money-tracking web application built using **
 ```bash
 git clone https://github.com/Oyeins-GUI/Brainwave_Matrix_Intern.git
 cd Brainwave_Matrix_Intern
-
 ```
 
 ### **2️⃣ Set up Frontend**
@@ -106,8 +105,8 @@ Feel free to open an issue if you find any bugs or have feature requests!
 
 For questions or support, reach out via:
 
--  GitHub Issues: [Open an Issue](https://github.com/Oyeins-GUI/Brainwave_Matrix_Intern/issues)
+-  GitHub Issues: [Open an Issue](https://github.com/Oyeins-GUI/Brainwave_Matrix_Intern/issues/new)
 -  Email: oyeinbomoopuene@gmail.com
--  Portfolio: [Visit my website](https://oyeinbomo.vercel.app)
+-  Portfolio: [Reach out to me via my website](https://oyeinbomo.vercel.app/contact)
 
 ---
