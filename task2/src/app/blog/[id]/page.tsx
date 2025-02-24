@@ -3,7 +3,7 @@ import { Calendar, User, Tag } from "lucide-react";
 import { CommentData, CommentSection } from "@/components/CommentSection";
 import { DeleteBlogButton } from "@/components/DeleteBlogButton";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // This is mock data. In a real app, you'd fetch this from an API or database.
 const posts = [

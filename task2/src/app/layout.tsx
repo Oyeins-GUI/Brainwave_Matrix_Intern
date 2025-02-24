@@ -1,10 +1,10 @@
 import type React from "react";
 import "./globals.css";
 // import { GeistSans } from "geist/font/sans"
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import { AuthProvider } from "./components/AuthProvider";
-import { ThemeProvider } from "./components/ThemeProvider";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { AuthProvider } from "@/components/AuthProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {

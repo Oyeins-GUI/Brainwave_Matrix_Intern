@@ -18,6 +18,7 @@ import {
    CardTitle,
 } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
+import { toast } from "@/components/ui/use-toast";
 
 export default function SignIn() {
    const router = useRouter();
@@ -37,19 +38,29 @@ export default function SignIn() {
       setError("");
 
       const formData = new FormData(e.currentTarget);
-      const response = await signIn("credentials", {
-         email: formData.get("email"),
-         password: formData.get("password"),
-         redirect: false,
-      });
+      try {
+         const response = await signIn("credentials", {
+            email: formData.get("email"),
+            password: formData.get("password"),
+            redirect: false,
+         });
 
-      if (response?.error) {
-         console.error("sign in ", response?.error);
-         setError("Invalid credentials");
-         setIsLoading(false);
-      } else {
-         router.push("/blog");
-         router.refresh();
+         if (response?.error) {
+            console.error("sign in ", response?.error);
+            setError("Invalid credentials");
+            setIsLoading(false);
+         } else {
+            router.push("/blog");
+            router.refresh();
+         }
+      } catch (error) {
+         console.error("signin error", error);
+         toast({
+            title: "Signin error",
+            description: "Something went wrong. Try again",
+            draggable: true,
+            duration: 5000,
+         });
       }
    };
 
@@ -74,7 +85,7 @@ export default function SignIn() {
                      <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-destructive/15 text-destructive px-4 py-3 rounded-lg mb-4"
+                        className="bg-destructive/15 text-red-400 px-4 py-3 rounded-lg mb-4"
                      >
                         {error}
                      </motion.div>
