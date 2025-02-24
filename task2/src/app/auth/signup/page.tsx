@@ -17,6 +17,7 @@ import {
    CardTitle,
 } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import { signIn } from "next-auth/react";
 
 export default function SignUp() {
    const router = useRouter();
@@ -49,16 +50,41 @@ export default function SignUp() {
          });
 
          if (res.ok) {
-            setIsLoading(false);
-            router.push("/auth/signin");
+            const signInRes = await signIn("credentials", {
+               email,
+               password,
+               redirect: false,
+            });
+
+            if (signInRes?.error) {
+               console.error("sign in ", signInRes?.error);
+               toast({
+                  title: "Signup error",
+                  description: "Invalid credentials",
+                  draggable: true,
+                  duration: 5000,
+               });
+            } else {
+               router.push("/blog");
+               router.refresh();
+            }
+         } else {
+            console.error(error);
+            toast({
+               title: "Signup error",
+               description:
+                  "User already exists. Try signing in if you already have an account",
+               draggable: true,
+               duration: 5000,
+            });
          }
       } catch (error) {
          console.error(error);
          toast({
-            title: "Signup error",
+            title: "server error",
             description: "Something went wrong",
             draggable: true,
-            duration: 3000,
+            duration: 5000,
          });
       } finally {
          setIsLoading(false);
