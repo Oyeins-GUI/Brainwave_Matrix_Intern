@@ -19,20 +19,18 @@ export interface CommentData {
 }
 
 interface CommentSectionProps {
-   postId: number;
+   blogId: string;
    initialComments: CommentData[];
 }
 
 export function CommentSection({
-   postId,
+   blogId,
    initialComments,
 }: CommentSectionProps) {
    const { data: session } = useSession();
    const [comments, setComments] = useState<CommentData[]>(initialComments);
    const [newComment, setNewComment] = useState("");
    const { toast } = useToast();
-
-   console.log("post id ", postId);
 
    const handleSubmitComment = async (e: React.FormEvent) => {
       e.preventDefault();
