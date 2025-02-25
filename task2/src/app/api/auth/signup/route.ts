@@ -6,8 +6,6 @@ export async function POST(req: Request) {
    try {
       const { name, email, password } = await req.json();
 
-      console.log({ name, email, password });
-
       const { data: existingUser } = await supabase
          .from("users")
          .select("*")

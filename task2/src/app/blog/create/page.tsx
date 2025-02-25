@@ -28,7 +28,6 @@ export default function BlogEditor() {
    const author = session.user?.id;
 
    const handlePublish = async () => {
-      console.log({ title, excerpt, category, content, author });
       setPublishing(true);
       const { data: blog, error } = await supabase
          .from("blogs")
