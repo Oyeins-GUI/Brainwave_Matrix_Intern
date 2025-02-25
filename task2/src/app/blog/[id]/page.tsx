@@ -1,4 +1,4 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import { CommentSection } from "@/components/CommentSection";
 import { DeleteBlogButton } from "@/components/DeleteBlogButton";
 import { supabase } from "@/lib/supabase";

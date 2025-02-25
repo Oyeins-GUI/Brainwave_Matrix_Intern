@@ -6,8 +6,9 @@ import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/components/AuthProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
    title: "Blogosphere | Modern Blogging Platform",
    description: "Share your thoughts with the world in style",
 };
@@ -18,7 +19,7 @@ export default function RootLayout({
    children: React.ReactNode;
 }) {
    return (
-      <html lang="en" suppressHydrationWarning>
+      <html lang="en">
          <body className={` antialiased`}>
             <ThemeProvider
                attribute="class"

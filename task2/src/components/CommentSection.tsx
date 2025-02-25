@@ -32,6 +32,8 @@ export function CommentSection({
    const [newComment, setNewComment] = useState("");
    const { toast } = useToast();
 
+   console.log(blogId);
+
    const handleSubmitComment = async (e: React.FormEvent) => {
       e.preventDefault();
       if (!session) {
