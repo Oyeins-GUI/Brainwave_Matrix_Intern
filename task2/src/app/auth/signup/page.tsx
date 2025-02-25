@@ -31,14 +31,12 @@ export default function SignUp() {
       setError("");
 
       const formData = new FormData(e.currentTarget);
-      console.log("form data", formData);
+
       const name = formData.get("name");
       const email = formData.get("email");
       const password = formData.get("password");
 
       const user = { name, email, password };
-
-      console.log(user);
 
       try {
          const res = await fetch("/api/auth/signup", {

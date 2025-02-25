@@ -33,22 +33,6 @@ export function Footer() {
                            Blog
                         </Link>
                      </li>
-                     <li>
-                        <Link
-                           href="/about"
-                           className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                        >
-                           About Us
-                        </Link>
-                     </li>
-                     <li>
-                        <Link
-                           href="/contact"
-                           className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                        >
-                           Contact
-                        </Link>
-                     </li>
                   </ul>
                </div>
                <div>
@@ -56,7 +40,7 @@ export function Footer() {
                   <ul className="space-y-2">
                      <li>
                         <Link
-                           href="/privacy"
+                           href="#"
                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
                         >
                            Privacy Policy
@@ -64,7 +48,7 @@ export function Footer() {
                      </li>
                      <li>
                         <Link
-                           href="/terms"
+                           href="#"
                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
                         >
                            Terms of Service
@@ -72,7 +56,7 @@ export function Footer() {
                      </li>
                      <li>
                         <Link
-                           href="/cookies"
+                           href="#"
                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
                         >
                            Cookie Policy
@@ -85,40 +69,41 @@ export function Footer() {
                      Connect With Us
                   </h3>
                   <div className="flex space-x-4">
-                     <a
+                     <Link
                         href="#"
                         className="text-muted-foreground hover:text-primary transition-colors"
                      >
                         <Facebook size={20} />
                         <span className="sr-only">Facebook</span>
-                     </a>
-                     <a
-                        href="#"
+                     </Link>
+                     <Link
+                        href="https://x.com/oyeinbomo"
                         className="text-muted-foreground hover:text-primary transition-colors"
                      >
                         <Twitter size={20} />
                         <span className="sr-only">Twitter</span>
-                     </a>
-                     <a
+                     </Link>
+                     <Link
                         href="#"
                         className="text-muted-foreground hover:text-primary transition-colors"
                      >
                         <Instagram size={20} />
                         <span className="sr-only">Instagram</span>
-                     </a>
-                     <a
-                        href="#"
+                     </Link>
+                     <Link
+                        href="https://github.com/Oyeins-GUI"
                         className="text-muted-foreground hover:text-primary transition-colors"
                      >
                         <Github size={20} />
                         <span className="sr-only">GitHub</span>
-                     </a>
+                     </Link>
                   </div>
                </div>
             </div>
             <div className="mt-8 pt-8 border-t text-center">
                <p className="text-sm text-muted-foreground">
-                  © {new Date().getFullYear()} Blogosphere. All rights reserved.
+                  © {new Date().getFullYear()} Blogoosphere. All rights
+                  reserved.
                </p>
             </div>
          </div>

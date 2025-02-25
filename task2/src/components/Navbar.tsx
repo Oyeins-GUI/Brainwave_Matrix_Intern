@@ -27,7 +27,7 @@ export function Navbar() {
                   href="/"
                   className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50"
                >
-                  Blogosphere
+                  Blogoosphere
                </Link>
 
                <div className="hidden md:flex items-center gap-4">
