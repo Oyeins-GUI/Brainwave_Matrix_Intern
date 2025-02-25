@@ -13,13 +13,10 @@ export const authOptions: AuthOptions = {
             password: { label: "Password", type: "password" },
          },
          async authorize(credentials) {
-            console.log("credentials", credentials);
             const { email, password } = credentials ?? {};
 
             if (!email || !password)
                throw new Error("Email and password are required");
-
-            console.log("user data", { email, password });
 
             const { data: user, error } = await supabase
                .from("users")
@@ -48,7 +45,7 @@ export const authOptions: AuthOptions = {
          return token;
       },
       async session({ session, token }) {
-         return { ...session, user: { ...session.user, id: token.sub } };
+         return { ...session, user: { id: token.sub, ...session.user } };
       },
    },
    pages: {

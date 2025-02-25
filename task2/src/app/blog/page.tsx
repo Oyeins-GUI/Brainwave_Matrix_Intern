@@ -12,40 +12,30 @@ import {
    CardHeader,
    CardTitle,
 } from "@/components/ui/card";
-
-// This is mock data. In a real app, you'd fetch this from an API or database.
-const posts = [
-   {
-      id: 1,
-      title: "The Future of Web Development",
-      excerpt:
-         "Exploring the latest trends and technologies shaping the future of web development.",
-      author: "Jane Doe",
-      date: "2023-05-15",
-      category: "Technology",
-   },
-   {
-      id: 2,
-      title: "Mastering React Hooks",
-      excerpt:
-         "A comprehensive guide to using React Hooks for state management and side effects.",
-      author: "John Smith",
-      date: "2023-05-10",
-      category: "Programming",
-   },
-   {
-      id: 3,
-      title: "The Art of Minimalist Design",
-      excerpt:
-         "How to create stunning user interfaces using minimalist design principles.",
-      author: "Emily Johnson",
-      date: "2023-05-05",
-      category: "Design",
-   },
-   // Add more mock posts here...
-];
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { formatDistanceToNow } from "date-fns";
+import { Blog } from "@/supbase";
 
 export default function BlogListing() {
+   const [blogs, setBlogs] = useState<Blog[]>([]);
+
+   useEffect(() => {
+      const getBlogs = async () => {
+         const { data, error } = await supabase.from("blogs").select("*");
+
+         if (error) {
+            console.error(error);
+            return;
+         }
+
+         setBlogs(data);
+      };
+      getBlogs();
+   }, []);
+
+   console.log({ blogs });
+
    return (
       <div className="container mx-auto px-4 py-8 sm:py-16">
          <motion.div
@@ -64,9 +54,9 @@ export default function BlogListing() {
          </motion.div>
 
          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post, index) => (
+            {blogs.map((blog, index) => (
                <motion.div
-                  key={post.id}
+                  key={blog.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -74,28 +64,28 @@ export default function BlogListing() {
                   <Card className="h-full flex flex-col">
                      <CardHeader>
                         <div className="text-sm text-muted-foreground mb-2">
-                           {post.category}
+                           {blog.category}
                         </div>
                         <CardTitle className="text-xl sm:text-2xl">
-                           {post.title}
+                           {blog.title}
                         </CardTitle>
                         <CardDescription className="line-clamp-2">
-                           {post.excerpt}
+                           {blog.excerpt}
                         </CardDescription>
                      </CardHeader>
                      <CardContent className="flex-grow">
                         <div className="flex items-center text-sm text-muted-foreground">
                            <User className="mr-2 h-4 w-4" />
-                           {post.author}
+                           {blog.author}
                         </div>
                         <div className="flex items-center text-sm text-muted-foreground mt-2">
                            <Calendar className="mr-2 h-4 w-4" />
-                           {post.date}
+                           {formatDistanceToNow(blog?.created_at)} ago
                         </div>
                      </CardContent>
                      <CardFooter>
                         <Button asChild className="w-full group">
-                           <Link href={`/blog/${post.id}`}>
+                           <Link href={`/blog/${blog.id}`}>
                               Read More
                               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                            </Link>

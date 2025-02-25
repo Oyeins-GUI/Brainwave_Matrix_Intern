@@ -18,19 +18,21 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 
 interface DeleteBlogButtonProps {
-   postId: number;
+   blogId: string;
 }
 
-export function DeleteBlogButton({ postId }: DeleteBlogButtonProps) {
+export function DeleteBlogButton({ blogId }: DeleteBlogButtonProps) {
    const [isDeleting, setIsDeleting] = useState(false);
    const router = useRouter();
    const { toast } = useToast();
+
+   console.log("delete blog", blogId);
 
    const handleDelete = async () => {
       setIsDeleting(true);
       try {
          // In a real application, you would make an API call here
-         // For example: await fetch(`/api/posts/${postId}`, { method: 'DELETE' })
+         // For example: await fetch(`/api/posts/${blogId}`, { method: 'DELETE' })
 
          // Simulating API call
          await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -41,6 +43,7 @@ export function DeleteBlogButton({ postId }: DeleteBlogButtonProps) {
          });
          router.push("/blog");
       } catch (error) {
+         console.error(error);
          toast({
             title: "Error",
             description: "Failed to delete the blog post. Please try again.",
