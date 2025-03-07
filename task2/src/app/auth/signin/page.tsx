@@ -2,14 +2,7 @@
 
 import type React from "react";
 
-import { useEffect, useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { Mail, Lock, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
    Card,
    CardContent,
@@ -17,20 +10,21 @@ import {
    CardHeader,
    CardTitle,
 } from "@/components/ui/card";
-import { useSession } from "next-auth/react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
+import { motion } from "framer-motion";
+import { Loader2, Lock, Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export default function SignIn() {
+   const searchParams = useSearchParams();
+   const callbackUrl = searchParams.get("callbackUrl") ?? "/blog";
    const router = useRouter();
    const [error, setError] = useState("");
    const [isLoading, setIsLoading] = useState(false);
-   const { data: session } = useSession();
-
-   useEffect(() => {
-      if (session) {
-         router.push("/blog");
-      }
-   }, [session, router]);
 
    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -43,6 +37,7 @@ export default function SignIn() {
             email: formData.get("email"),
             password: formData.get("password"),
             redirect: false,
+            callbackUrl,
          });
 
          if (response?.error) {
@@ -50,7 +45,7 @@ export default function SignIn() {
             setError("Invalid credentials");
             setIsLoading(false);
          } else {
-            router.push("/blog");
+            router.push(callbackUrl);
             router.refresh();
          }
       } catch (error) {
