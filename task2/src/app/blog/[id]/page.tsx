@@ -3,12 +3,44 @@ import { CommentSection } from "@/components/CommentSection";
 import { DeleteBlogButton } from "@/components/DeleteBlogButton";
 import { supabase } from "@/lib/supabase";
 import { Blog } from "@/supbase";
+import { capitalize } from "@/utils/string";
 import { formatDistanceToNow } from "date-fns";
 import { Calendar, Tag, User } from "lucide-react";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth/next";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import "react-markdown-editor-lite/lib/index.css";
+
+type User = {
+   id: string;
+   email: string;
+   name: string;
+};
+
+type Props = {
+   params: Promise<{ id: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+   const { id } = await params;
+
+   const { data: blog } = await supabase
+      .from("blogs")
+      .select("*")
+      .eq("id", id)
+      .single<Blog>();
+
+   return {
+      title: blog?.title,
+      openGraph: {
+         description: blog?.excerpt,
+         publishedTime: `${new Date(`${blog?.created_at}`).getTime()}`,
+         tags: blog?.category,
+         writers: blog?.author,
+      },
+   };
+}
 
 export default async function BlogPost({
    params,
@@ -22,6 +54,12 @@ export default async function BlogPost({
       .eq("id", blogId)
       .single<Blog>();
    const session = await getServerSession(authOptions);
+
+   const { data: blogAuthor } = await supabase
+      .from("users")
+      .select("*")
+      .eq("id", blog?.author)
+      .single<User>();
 
    if (!blog) {
       notFound();
@@ -38,7 +76,7 @@ export default async function BlogPost({
                </h1>
                <div className="flex flex-wrap items-center text-muted-foreground mb-2">
                   <User className="mr-2 h-4 w-4" />
-                  <span className="mr-4">{blog.author}</span>
+                  <span className="mr-4">{capitalize(blogAuthor?.name)}</span>
                   <Calendar className="mr-2 h-4 w-4" />
                   <span className="mr-4">
                      {formatDistanceToNow(blog.created_at)} ago
