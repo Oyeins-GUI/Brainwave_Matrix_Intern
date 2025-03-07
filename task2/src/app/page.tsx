@@ -34,7 +34,7 @@ export default function Home() {
                         </Link>
                      </Button>
                      <Button asChild size="lg" variant="outline">
-                        <Link href="/auth/signin">Start Writing</Link>
+                        <Link href="/blog/create">Start Writing</Link>
                      </Button>
                   </div>
                </motion.div>
